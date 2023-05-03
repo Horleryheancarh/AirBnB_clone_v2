@@ -1,12 +1,34 @@
 #!/usr/bin/python3
-""" Function to unzip and deploy """
+""" Function to zip, copy, unzip and deploy """
 from fabric.api import *
+from datetime import datetime
 import shlex
 import os
 
 
 env.hosts = ['18.234.192.243', '35.174.211.240']
 
+
+def deploy():
+    """ Run All """
+    try:
+        archive_path = do_pack()
+    except:
+        return False
+
+    return do_deploy(archive_path)
+
+def do_pack():
+    try:
+        if not os.path.exists('versions'):
+            local('mkdir versions')
+        time = datetime.now()
+        fmt = '%Y%m%d%H%M%S'
+        arc = 'versions/web_static_{}.tgz'.format(time.strftime(fmt))
+        local('tar -zcvf {} web_static'.format(arc))
+        return arc
+    except:
+        return None
 
 def do_deploy(archive_path):
     """ Deploy """
