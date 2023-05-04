@@ -13,7 +13,8 @@ def do_pack():
         fmt = '%Y%m%d%H%M%S'
         arc = 'versions/web_static_{}.tgz'.format(time.strftime(fmt))
         local('tar -zcvf {} web_static'.format(arc))
-        print('web_static packed: {} -> {}Bytes'.format(arc, os.stat(arc).st_size))
+        size = os.stat(arc).st_size
+        print('web_static packed: {} -> {}Bytes'.format(arc, size))
         return arc
     except:
         return None
