@@ -18,6 +18,7 @@ def deploy():
 
     return do_deploy(archive_path)
 
+
 def do_pack():
     try:
         if not os.path.exists('versions'):
@@ -29,6 +30,7 @@ def do_pack():
         return arc
     except:
         return None
+
 
 def do_deploy(archive_path):
     """ Deploy """
@@ -44,7 +46,7 @@ def do_deploy(archive_path):
         fname = shlex.split(fname)
         fname = fname[0]
 
-        print("allname: ", allname, " fname: ",fname)
+        print("allname: ", allname, " fname: ", fname)
 
         releases_path = '/data/web_static/releases/{}/'.format(fname)
         temp = '/tmp/{}'.format(allname)

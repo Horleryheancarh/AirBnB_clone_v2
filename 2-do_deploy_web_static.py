@@ -22,7 +22,7 @@ def do_deploy(archive_path):
         fname = shlex.split(fname)
         fname = fname[0]
 
-        print("allname: ", allname, " fname: ",fname)
+        print("allname: ", allname, " fname: ", fname)
 
         releases_path = '/data/web_static/releases/{}/'.format(fname)
         temp = '/tmp/{}'.format(allname)
